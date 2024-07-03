@@ -1,14 +1,18 @@
 // /imports/ui/pages/HomePage.jsx
 
 import React, { useState } from 'react'
-import { useSearchParams } from "react-router-dom"
+import { useSearchParams, Redirect } from "react-router-dom"
 import { Meteor } from 'meteor/meteor'
+import LoginPage from './LoginPage'
 
 
 var token = ""
 const HomePage = () => {
     const [searchParams] = useSearchParams()
     code = searchParams.get("code")
+    if (code == null) {
+        return <LoginPage />
+    }
 
     if (token == "") {
         Meteor.call('getAccessToken', code, (error, result) => {
