@@ -10,6 +10,8 @@
   "dependencies": {
     "@babel/runtime": "^7.23.5",
     "axios": "^1.7.2",
+    "highcharts": "^11.4.4",
+    "highcharts-react-official": "^3.2.1",
     "meteor-node-stubs": "^1.2.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -26,10 +26,10 @@ Meteor.methods({
         })
       })
 
-      console.log('Response from server:', response.data)
+      // console.log('Response from server:', response.data)
       return response.data
     } catch (error) {
-      console.error('Error making POST request:', error)
+      // console.log('Error making POST request:', error.message)
       throw new Meteor.Error('post-request-failed', error.message)
     }
   },
@@ -37,14 +37,23 @@ Meteor.methods({
   fetchStockDetails(data) {
     this.unblock()
     try {
-      console.log(data)
+      // console.log(data)
       const response = HTTP.get(`https://api.upstox.com/v2/market-quote/quotes?instrument_key=NSE_EQ%7C${data.id}`, {
         headers: {
           'Authorization': `Bearer ${data.token}`,
           'Accept': 'application/json'
         },
       })
-      console.log(response.data)
+      const today = new Date();
+      const formattedDate = today.toLocaleDateString('en-CA'); // Use Canadian locale for yyyy-mm-dd format
+      year = Number(formattedDate.split('-')[0])
+      month = Number(formattedDate.split('-')[1])
+      day = Number(formattedDate.split('-')[2])
+      let to = `${year - 1}-${month.toString().padStart(2, 0)}-${day.toString().padStart(2, 0)}`
+      let from = `${year}-${month.toString().padStart(2, 0)}-${(day - 1).toString().padStart(2, 0)}`
+      const history = HTTP.get(`https://api.upstox.com/v2/historical-candle/NSE_EQ%7C${data.id}/day/${from}/${to}`, { "Accept": "application/json" })
+      response.data.history = history.data.data.candles
+      // console.log(response.data)
       return response.data
     } catch (error) {
       throw new Meteor.Error('api-error', error.message)

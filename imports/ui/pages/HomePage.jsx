@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { useSearchParams, Redirect } from "react-router-dom"
 import { Meteor } from 'meteor/meteor'
 import LoginPage from './LoginPage'
+import StockChart from './ChartPage'
 
 
 var token = ""
@@ -187,9 +188,12 @@ const HomePage = () => {
                                 <div>high Price: {stockDetails.data[Object.keys(stockDetails.data)[0]].ohlc.high}</div>
                                 <div>low Price: {stockDetails.data[Object.keys(stockDetails.data)[0]].ohlc.low}</div>
                                 <div>close Price: {stockDetails.data[Object.keys(stockDetails.data)[0]].ohlc.close}</div>
+                                <div className="container mx-auto p-4">
+                                    <h1 className="text-2xl font-bold mb-4">Stock Price Chart: </h1>
+                                    <StockChart stockData={stockDetails.history} />
+                                </div>
                             </p>
                         </div>
-                        // {stockDetails.data[Object.keys(stockDetails.data)[0]].symbol}
                     ) : (
                         <div className="w-full h-full flex items-center justify-center">
                             <p className="text-xl text-gray-500">Select a stock to see details</p>
