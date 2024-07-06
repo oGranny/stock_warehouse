@@ -1,9 +1,19 @@
 import { Meteor } from 'meteor/meteor'
 
-const API_KEY = "c4861abc-2484-4271-910c-022f22ac61f3"
-const API_SECRET = "lc69bf0u3v"
+const API_KEY = Meteor.settings.API_KEY
+const API_SECRET = Meteor.settings.API_SECRET
+
+Meteor.startup(() => {
+  console.log(`Your API key is ${Meteor.settings.API_KEY}`);
+  console.log(`Your API secret is ${Meteor.settings.API_SECRET}`);
+})
 
 Meteor.methods({
+
+  getApiKey() {
+    return API_KEY
+  },
+
   async getAccessToken(code) {
     try {
       const apiUrl = `https://api.upstox.com/v2/login/authorization/token?code=${code}&client_id=${API_KEY}&client_secret=${API_SECRET}&redirect_uri=http://localhost:3000/&grant_type=authorization_code`

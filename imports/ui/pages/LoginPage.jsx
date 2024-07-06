@@ -1,6 +1,16 @@
 import React from 'react'
+import { Meteor } from 'meteor/meteor'
 
 const LoginPage = () => {
+    let API_KEY = ""
+    Meteor.call('getApiKey', (error, result) => {
+        if (error) {
+            console.error('Api_key not found:', error)
+        } else {
+            console.log('api_key:', result)
+            API_KEY = result
+        }
+    })
     return (
         <div className="bg-gray-100 flex items-center justify-center min-h-screen">
             <div className="bg-white p-8 rounded-lg shadow-lg">

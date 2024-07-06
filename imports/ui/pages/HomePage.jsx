@@ -20,7 +20,6 @@ const HomePage = () => {
             if (error) {
                 console.error('Method call failed:', error)
             } else {
-                console.log('Method call result:', result.access_token)
                 token = result.access_token
             }
         })
