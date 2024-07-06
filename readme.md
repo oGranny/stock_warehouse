@@ -62,8 +62,9 @@ email: ogranny.github.io@gmail.com
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://raw.githubusercontent.com/oGranny/stock_warehouse/master/pic1.PNG)
-[![Product Name Screen Shot][product-screenshot2]](https://raw.githubusercontent.com/oGranny/stock_warehouse/master/pic2.PNG)
+<img src="https://raw.githubusercontent.com/oGranny/stock_warehouse/master/pic1.PNG" />
+
+<img src="https://raw.githubusercontent.com/oGranny/stock_warehouse/master/pic2.PNG" />
 
 A simple  web app built to track the stock price of various stocks listed in BSE and NSE with candlestick chart support 
 
